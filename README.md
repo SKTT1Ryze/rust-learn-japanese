@@ -1,2 +1,2 @@
 # rust-learn-japanese
-Command Tool Written with Rust for Japanese learning
+A Command Line Tool Written with Rust for Japanese Learning
