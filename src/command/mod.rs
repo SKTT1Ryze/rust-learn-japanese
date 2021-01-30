@@ -7,6 +7,7 @@ pub mod cp;
 pub mod mv;
 pub mod rm;
 pub mod exa;
+pub mod clear;
 
 #[macro_export]
 macro_rules! command {

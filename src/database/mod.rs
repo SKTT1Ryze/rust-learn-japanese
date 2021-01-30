@@ -17,7 +17,15 @@ pub struct JPWord {
     sentence: Vec<String>,
 }
 
+impl JPWord {
+    pub fn value(&self) -> (&str, &str, &str, Vec<&str>) {
+        let sentenses: Vec<&str> = self.sentence.iter().map(|s| s.as_str()).collect();
+        (self.kangji.as_str(), self.kana.as_str(), self.chinese.as_str(), sentenses)
+    }
+}
+
 use std::path::Path;
+use rand::Rng;
 impl JPDataBase {
     /// Create a Japanese DataBase from specified json path
     /// TODO: example
@@ -28,6 +36,12 @@ impl JPDataBase {
         Self {
             jp_dict
         }
+    }
+
+    /// Randomly generate japanese word
+    pub fn rand_jpword(&self) -> &JPWord {
+        let mut rng = rand::thread_rng();
+        &self.jp_dict[rng.gen_range(0..self.jp_dict.len())]
     }
 }
 
