@@ -7,9 +7,12 @@ use command::{
     cp::CP,
     mv::MV,
     rm::RM,
+    exa::EXA,
 };
 
 mod command;
+mod database;
+
 fn main() {
     let args: Vec<String> = env::args().into_iter().map(|f| f.clone()).collect();
     assert!(args.len() > 1);
@@ -29,6 +32,9 @@ fn main() {
         },
         "rm" => {
             RM::excute(&command_args);
+        },
+        "exa" => {
+            EXA::excute(&command_args);
         }
         _ => panic!("unsupported command!")
     }
