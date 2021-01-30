@@ -1,4 +1,4 @@
-//! CD Command Abstraction
+//! LS Command Abstraction
 use std::process::Command;
 use std::ffi::OsStr;
 use std::fmt::Debug;
