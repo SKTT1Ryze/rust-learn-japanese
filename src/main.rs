@@ -5,23 +5,30 @@ use std::env;
 use command::{
     ls::LS,
     cp::CP,
+    mv::MV,
+    rm::RM,
 };
 
 mod command;
 fn main() {
     let args: Vec<String> = env::args().into_iter().map(|f| f.clone()).collect();
     assert!(args.len() > 1);
+    let command_args: Vec<&str> = args[2..].into_iter().map(|f| f.as_str()).collect();
     match args[1].as_str() {
         "cd" => {
             panic!("CDコマンドは使いません");
         },
         "ls" => {
-            let ls_args: Vec<&str> = args[2..].into_iter().map(|f| f.as_str()).collect();
-            LS::excute(&ls_args);
+            LS::excute(&command_args);
         },
         "cp" => {
-            let cp_args: Vec<&str> = args[2..].into_iter().map(|f| f.as_str()).collect();
-            CP::excute(&cp_args);
+            CP::excute(&command_args);
+        },
+        "mv" => {
+            MV::excute(&command_args);
+        },
+        "rm" => {
+            RM::excute(&command_args);
         }
         _ => panic!("unsupported command!")
     }

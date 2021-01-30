@@ -4,6 +4,8 @@
 pub mod cd;
 pub mod ls;
 pub mod cp;
+pub mod mv;
+pub mod rm;
 
 #[macro_export]
 macro_rules! command {
