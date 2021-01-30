@@ -16,12 +16,12 @@ fn main() {
             panic!("CDコマンドは使いません");
         },
         "ls" => {
-            assert_eq!(args.len(), 3);
-            LS::ls(args[2].as_str());
+            let ls_args: Vec<&str> = args[2..].into_iter().map(|f| f.as_str()).collect();
+            LS::excute(&ls_args);
         },
         "cp" => {
             let cp_args: Vec<&str> = args[2..].into_iter().map(|f| f.as_str()).collect();
-            CP::cp(&cp_args);
+            CP::excute(&cp_args);
         }
         _ => panic!("unsupported command!")
     }
