@@ -18,7 +18,7 @@ use database::JPDataBase;
 
 fn main() {
     // Prepare Japanese DataBase
-    let json_f = Path::new("./test.json");
+    let json_f = Path::new("/home/hustccc/rust-learn-japanese/test.json");
     let jp_database = JPDataBase::new(json_f);
     let args: Vec<String> = env::args().into_iter().map(|f| f.clone()).collect();
     assert!(args.len() > 1);
