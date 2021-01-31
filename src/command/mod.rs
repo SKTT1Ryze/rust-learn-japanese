@@ -8,6 +8,12 @@ pub mod mv;
 pub mod rm;
 pub mod exa;
 pub mod clear;
+pub mod cargo;
+pub mod touch;
+pub mod ssh;
+pub mod git;
+pub mod just;
+pub mod other;
 
 #[macro_export]
 macro_rules! command {

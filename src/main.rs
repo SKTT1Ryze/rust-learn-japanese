@@ -13,6 +13,12 @@ use command::{
     rm::RM,
     exa::EXA,
     clear::Clear,
+    cargo::Cargo,
+    touch::Touch,
+    ssh::SSH,
+    git::Git,
+    just::Just,
+    other::RustUp,
 };
 use database::JPDataBase;
 
@@ -55,6 +61,30 @@ fn main() {
             is_time_to_memorize_japanese_word(&jp_database);
             std::thread::sleep(std::time::Duration::from_secs(3));
             Clear::excute(&command_args);
+        },
+        "cargo" => {
+            is_time_to_memorize_japanese_word(&jp_database);
+            Cargo::excute(&command_args);
+        },
+        "touch" => {
+            is_time_to_memorize_japanese_word(&jp_database);
+            Touch::excute(&command_args);
+        },
+        "ssh" => {
+            is_time_to_memorize_japanese_word(&jp_database);
+            SSH::excute(&command_args);
+        },
+        "git" => {
+            is_time_to_memorize_japanese_word(&jp_database);
+            Git::excute(&command_args);
+        },
+        "just" => {
+            is_time_to_memorize_japanese_word(&jp_database);
+            Just::excute(&command_args);
+        },
+        "rustup" => {
+            is_time_to_memorize_japanese_word(&jp_database);
+            RustUp::excute(&command_args);
         }
         _ => panic!("unsupported command!")
     }
