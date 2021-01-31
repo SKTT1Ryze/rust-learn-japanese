@@ -18,7 +18,8 @@ use command::{
     ssh::SSH,
     git::Git,
     just::Just,
-    other::RustUp,
+    rustup::RustUp,
+    vim::Vim,
 };
 use database::JPDataBase;
 
@@ -85,7 +86,11 @@ fn main() {
         "rustup" => {
             is_time_to_memorize_japanese_word(&jp_database);
             RustUp::excute(&command_args);
-        }
+        },
+        "vim" => {
+            is_time_to_memorize_japanese_word(&jp_database);
+            Vim::excute(&command_args);
+        },
         _ => panic!("unsupported command!")
     }
 }
