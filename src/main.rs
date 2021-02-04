@@ -20,7 +20,6 @@ use command::{
     just::Just,
     rustup::RustUp,
     vim::Vim,
-    j::J,
 };
 use database::JPDataBase;
 
@@ -91,10 +90,6 @@ fn main() {
         "vim" => {
             is_time_to_memorize_japanese_word(&jp_database);
             Vim::excute(&command_args);
-        },
-        "j" => {
-            is_time_to_memorize_japanese_word(&jp_database);
-            J::excute(&command_args);
         },
         _ => panic!("unsupported command!")
     }
