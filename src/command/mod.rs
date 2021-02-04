@@ -15,6 +15,7 @@ pub mod git;
 pub mod just;
 pub mod rustup;
 pub mod vim;
+pub mod j;
 
 #[macro_export]
 macro_rules! command {
