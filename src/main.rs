@@ -21,7 +21,7 @@ use command::{
     rustup::RustUp,
     vim::Vim,
 };
-use database::JPDataBase;
+use database::{JPDataBase, html2json::html2json};
 
 fn main() {
     // Prepare Japanese DataBase
@@ -91,6 +91,10 @@ fn main() {
             is_time_to_memorize_japanese_word(&jp_database);
             Vim::excute(&command_args);
         },
+        "h2j" => {
+            assert_eq!(args.len(), 3);
+            html2json(&args[2]);
+        }
         _ => panic!("unsupported command!")
     }
 }

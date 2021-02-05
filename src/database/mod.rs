@@ -3,6 +3,8 @@
 //!　+ JSON　ファイルの解析
 //! + データベースの構築
 
+pub mod html2json;
+
 use serde_derive::{Deserialize, Serialize};
 
 pub struct JPDataBase {
@@ -18,6 +20,14 @@ pub struct JPWord {
 }
 
 impl JPWord {
+    pub fn new(kangji: &str, kana: &str, chinese: &str) -> Self {
+        todo!()
+    }
+
+    pub fn add_sentence(&mut self, sentence: &str) {
+        self.sentence.push(String::from(sentence));
+    }
+
     pub fn value(&self) -> (&str, &str, &str, Vec<&str>) {
         let sentenses: Vec<&str> = self.sentence.iter().map(|s| s.as_str()).collect();
         (self.kangji.as_str(), self.kana.as_str(), self.chinese.as_str(), sentenses)
