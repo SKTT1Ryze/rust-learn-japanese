@@ -21,7 +21,12 @@ pub struct JPWord {
 
 impl JPWord {
     pub fn new(kangji: &str, kana: &str, chinese: &str) -> Self {
-        todo!()
+        Self {
+            kangji: String::from(kangji),
+            kana: String::from(kana),
+            chinese: String::from(chinese),
+            sentence: Vec::new(),
+        }
     }
 
     pub fn add_sentence(&mut self, sentence: &str) {
