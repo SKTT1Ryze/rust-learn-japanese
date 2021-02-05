@@ -1,4 +1,5 @@
 # rust-learn-japanese
+[日本語](./README.md) [中文](./README_ch.md)  
 A Command Line Tool Written with Rust for Japanese Learning  
 Rust で作る日本語勉強ためのコマンドラインツールである  
 
