@@ -29,7 +29,8 @@ fn main() {
         val
     } else { String::from("./") };
     let rlj_home = Path::new(rlj_home.as_str());
-    let json_f = rlj_home.join("dict.json");
+    let dict_path = "dict.json";
+    let json_f = rlj_home.join(dict_path);
     let jp_database = JPDataBase::new(json_f);
     let args: Vec<String> = env::args().into_iter().map(|f| f.clone()).collect();
     assert!(args.len() > 1);
@@ -93,7 +94,7 @@ fn main() {
         },
         "h2j" => {
             assert_eq!(args.len(), 3);
-            html2json(&args[2]);
+            html2json(&args[2], dict_path);
         }
         _ => panic!("unsupported command!")
     }

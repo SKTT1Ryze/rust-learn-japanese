@@ -7,7 +7,10 @@
 //! It will pick up the japanese words from `example.html`
 //! and Write into `dict.json`  
 
-use std::{fs};
+use std::{
+    fs,
+    io::{prelude::*},
+};
 use scraper::{Html, Selector};
 use super::JPWord;
 use min_max::min;
@@ -61,7 +64,7 @@ impl<'a> Iterator for HtmlIter<'a> {
     }
 }
 
-pub fn html2json(path: &str) {
+pub fn html2json(path: &str, dict_path: &str) {
     let mut html_iter = HtmlIter::default();
     let html = fs::read_to_string(path).unwrap();
     let document = Html::parse_document(html.as_str());
@@ -86,12 +89,35 @@ pub fn html2json(path: &str) {
             }
         }    
     }
-    let jp_words: Vec<JPWord> = html_iter.into_iter().map(|h| {
+    let mut jp_words: Vec<JPWord> = html_iter.into_iter().map(|h| {
         JPWord::new(h.0, h.1, h.2)
     }).collect();
-    for word in jp_words {
-        if let Ok(json) = serde_json::to_string(&word) {
-            println!("{}", json);
+    let f_string = fs::read_to_string(dict_path).unwrap();
+    let mut dict: Vec<&str> = f_string.lines().collect();
+    let len = dict.len();
+    assert!(len >= 2);
+    let last_word = dict[len - 2];
+    let mut new_word = String::from(last_word);
+    if len > 2 {        
+        new_word.push(',');
+    }
+    dict[len - 2] = new_word.as_str(); 
+    let mut new_json = Vec::new();
+    for i in 0..jp_words.len() {
+        let word = &mut jp_words[i];
+        if let Ok(mut json) = serde_json::to_string(&word) {
+            json.insert(0, '\t');
+            if i != jp_words.len() - 1 { json.push(','); }
+            new_json.push(json);
         }
+    }
+    for json_item in &new_json {
+        dict.insert(dict.len() - 1, json_item.as_str());
+    }
+    let mut f = fs::File::create(dict_path).unwrap();
+    for line in dict {
+        // println!("{}", line);
+        f.write(line.as_bytes()).unwrap();
+        f.write(b"\n").unwrap();
     }
 }

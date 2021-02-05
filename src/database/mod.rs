@@ -29,7 +29,7 @@ impl JPWord {
         }
     }
 
-    pub fn add_sentence(&mut self, sentence: &str) {
+    pub fn _add_sentence(&mut self, sentence: &str) {
         self.sentence.push(String::from(sentence));
     }
 
